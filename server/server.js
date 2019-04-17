@@ -15,21 +15,22 @@ io.on('connection', (socket) => {
   console.log("New user connected");
 
   socket.on('createMessage',(message)=>{
-    console.log(" createMessage",message);
-  });
-  socket.emit('newMessage',{
-    from:'pratibha',
-    text:'hey,whats going on',
-    createdAt:12322
+    console.log('createMessage',message);
+    io.emit('newMessage',{
+      from: message.from,
+      text: message.text,
+      createdAt:newDate().getTime()
+    });
   });
 
+/*
 socket.emit('newEmail',{
   from:'pa@gmail.com',
   text:'hey,whats going on',
   createdAt:123
 });
 
-/*
+
 socket.on('createEmail',(newEmail)=>{
   console.log(" createEmail",newEmail);
 });*/
